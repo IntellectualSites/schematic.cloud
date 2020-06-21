@@ -24,7 +24,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [ '~/assets/style/global.scss' ],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
@@ -36,7 +36,16 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
-  ],
+    '@nuxtjs/style-resources'
+  ],  
+  /*
+  ** Style Resources
+  */
+ styleResources: {
+   scss: [
+     '~/assets/style/colors.scss'
+   ]
+ },
   /*
    ** Nuxt.js modules
    */
@@ -45,6 +54,18 @@ export default {
     'bootstrap-vue/nuxt',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    // Doc: https://github.com/nuxt-community/dotenv-module
+    '@nuxtjs/dotenv',
+    ['nuxt-fontawesome', {
+      component: 'fa', 
+      imports: [
+        //import whole set
+        {
+          set: '@fortawesome/free-solid-svg-icons',
+          icons: ['fas']
+        }
+      ]
+    }]
   ],
   /*
    ** Axios module configuration
@@ -52,8 +73,36 @@ export default {
    */
   axios: {},
   /*
+   ** Bootstrap Vue configuration
+   ** We disable automatic injection so that we
+   ** can inject it in our global SCSS file. This
+   ** allows us to create our own color scheme vars.
+   */
+  bootstrapVue: {
+    bootstrapCSS: false,
+    bootstrapVueCSS: false
+  },
+  /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
-  build: {},
+  build: {
+    extend(config, ctx) {
+      if (ctx.isDev) {
+       config.devtool = ctx.isClient ? 'eval-source-map' : 'inline-source-map'
+     }
+
+     if (ctx.isDev && ctx.isClient) {
+       config.module.rules.push({
+         enforce: 'pre',
+         test: /\.(js|vue)$/,
+         loader: 'eslint-loader',
+         exclude: /(node_modules)/,
+         options: {
+           fix: true
+         }
+       })
+     }
+   }
+  },
 }
