@@ -5,13 +5,22 @@
         <h1>Upload a schematic</h1>
       </b-card-title>
       <b-card-body>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea iste ab
-          odio, nesciunt perferendis veritatis voluptatibus cupiditate! Aperiam
-          saepe repellat illum incidunt quia quod laborum expedita, suscipit
-          vitae ipsa reprehenderit.
-        </p>
+        <FileUpload :target="uploadUrl" action="POST" alias="schematic" />
       </b-card-body>
     </b-card>
   </b-container>
 </template>
+
+<script>
+import FileUpload from '~/components/FileUpload'
+import config from '~/config'
+
+export default {
+  components: { FileUpload },
+  computed: {
+    uploadUrl() {
+      return config.upload_url
+    },
+  },
+}
+</script>
