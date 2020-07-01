@@ -19,7 +19,8 @@
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
     "nuxt": "^2.13.0",
-    "nuxt-fontawesome": "^0.4.0"
+    "nuxt-fontawesome": "^0.4.0",
+    "vue-clipboard2": "^0.3.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.0.0",
