@@ -1,13 +1,7 @@
 <template>
   <div>
-    <p class="loadingMessage">{{ loadingMessage }}</p>
-    <b-progress
-      class="progress"
-      :value="progress || 0.0"
-      :max="max"
-      show-progress
-      animated
-    />
+    <b-spinner class="loading" />
+    <p>{{ loadingMessage }}</p>
   </div>
 </template>
 
@@ -15,16 +9,7 @@
 import Funnies from 'funnies'
 
 export default {
-  name: 'UploadProgressBar',
-  props: {
-    progress: {
-      required: true,
-    },
-    max: {
-      type: Number,
-      default: 100,
-    },
-  },
+  name: 'LoadingSchematicData',
   data() {
     return {
       funnies: new Funnies(),
@@ -44,14 +29,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$spinner: 5rem;
+$padding: 30px;
+
 div {
-  .loadingMessage {
-    text-align: center;
-    font-family: 'Fredoka One';
+  padding-top: $padding;
+
+  .loading {
+    width: $spinner;
+    height: $spinner;
+    margin: 0 auto;
+    display: block;
   }
 
-  .progress {
-    height: 3rem;
+  p {
+    text-align: center;
+    font-family: 'Fredoka One';
+    padding-top: $padding;
   }
 }
 </style>

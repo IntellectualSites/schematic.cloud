@@ -47,12 +47,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.input-group-prepend {
-  width: 23%;
+.input-group {
+  margin-bottom: 15px;
+  .input-group-prepend {
+    width: 23%;
 
-  .input-group-text {
-    width: 100%;
-    overflow: hidden;
+    .input-group-text {
+      width: 100%;
+      overflow: hidden;
+    }
   }
 }
 </style>
