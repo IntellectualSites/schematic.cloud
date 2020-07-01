@@ -6,6 +6,14 @@
           <b-card bg-variant="dark-transparent" text-variant="light">
             <img src="~/assets/img/logo.png" alt="SchematicWeb" />
             <nuxt />
+            <template #footer>
+              <p class="footerText">
+                Made with <fa :icon="['fas', 'heart']" /> by
+                <a href="https://github.com/intellectualsites" target="_blank"
+                  >IntellectualSites</a
+                >
+              </p>
+            </template>
           </b-card>
         </b-col>
       </b-row>
@@ -27,6 +35,11 @@
       display: block;
       margin: 0 auto;
     }
+  }
+
+  .footerText {
+    text-align: center;
+    margin: 0;
   }
 }
 </style>

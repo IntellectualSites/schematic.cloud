@@ -1,18 +1,50 @@
 <template>
   <div>
-    <div v-if="result.error" class="error">
+    <div v-if="result.error" class="text">
       <p>{{ result.error }}</p>
     </div>
     <div v-else>
+      <div class="text">
+        <p>
+          You'll only see these values once. Make sure to make note of these
+          values if you ever need them. Most importantly, keep your delete key
+          otherwise you won't be able to delete this schematic.
+        </p>
+      </div>
       <CopyableText name="Download Key" :value="result.download_key" />
       <CopyableText name="Delete Key" :value="result.delete_key" />
+      <CopyableText
+        name="Download URL"
+        :value="downloadUrl(result.download_key)"
+        :is-url="true"
+        url-button-txt="Download"
+        url-button-variant="success"
+      />
+      <CopyableText
+        name="Delete URL"
+        :value="deleteUrl(result.delete_key)"
+        :is-url="true"
+        url-button-txt="Delete"
+        url-button-variant="danger"
+      />
+      <b-row>
+        <b-col cols="6">
+          <b-button variant="danger" block>Delete</b-button>
+        </b-col>
+        <b-col cols="6">
+          <b-button variant="success" block>Download</b-button>
+        </b-col>
+      </b-row>
     </div>
-    <b-button block @click="$emit('reset')">Reset</b-button>
+    <b-button class="resetBtn" block @click="$emit('reset')"
+      >Upload Another File</b-button
+    >
   </div>
 </template>
 
 <script>
 import CopyableText from '~/components/upload/CopyableText'
+import config from '~/config'
 
 export default {
   name: 'UploadResults',
@@ -23,5 +55,28 @@ export default {
       required: true,
     },
   },
+  methods: {
+    downloadUrl(key) {
+      return `${config.public_url}/download/${key}`
+    },
+    deleteUrl(key) {
+      return `${config.public_url}/delete/${key}`
+    },
+  },
 }
 </script>
+
+<style lang="scss" scoped>
+.text {
+  font-family: 'Fredoka One';
+  margin-bottom: 20px;
+
+  p {
+    margin-bottom: 3px;
+  }
+}
+
+.resetBtn {
+  margin-top: 15px;
+}
+</style>
