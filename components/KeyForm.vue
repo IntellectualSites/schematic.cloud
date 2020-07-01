@@ -1,7 +1,9 @@
 <template>
   <b-form @submit.prevent="submit">
     <b-form-input v-model="key" :placeholder="placeholder" />
-    <b-button type="submit" :disabled="!validInput">{{ button }}</b-button>
+    <b-button type="submit" :disabled="!validInput" block>{{
+      button
+    }}</b-button>
   </b-form>
 </template>
 
@@ -41,3 +43,13 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+input {
+  margin-top: 15px;
+}
+
+button {
+  margin-top: 15px;
+}
+</style>

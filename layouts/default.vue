@@ -4,11 +4,14 @@
       <b-row>
         <b-col cols="8" class="mx-auto">
           <b-card bg-variant="dark-transparent" text-variant="light">
-            <img src="~/assets/img/logo.png" alt="SchematicWeb" />
+            <nuxt-link to="/">
+              <img src="~/assets/img/logo.png" alt="SchematicWeb" />
+            </nuxt-link>
             <nuxt />
             <template #footer>
               <p class="footerText">
-                Made with <fa :icon="['fas', 'heart']" /> by
+                SchematicWeb version {{ version }}. Made with
+                <fa :icon="['fas', 'heart']" /> by
                 <a href="https://github.com/intellectualsites" target="_blank"
                   >IntellectualSites</a
                 >
@@ -20,6 +23,25 @@
     </b-container>
   </div>
 </template>
+
+<script>
+import config from '~/config'
+
+export default {
+  data() {
+    return {
+      version: 'loading',
+    }
+  },
+  async mounted() {
+    try {
+      this.version = (await this.$axios.get(config.api_url)).data.version
+    } catch {
+      this.version = 'unknown'
+    }
+  },
+}
+</script>
 
 <style lang="scss" scoped>
 #app {

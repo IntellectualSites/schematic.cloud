@@ -39,6 +39,7 @@ export default {
         this.active = true
         setTimeout(() => (this.active = false), 3000)
       } catch {
+        // eslint-disable-next-line
         console.error(`Failed to copy value: ${this.value}`)
       }
     },

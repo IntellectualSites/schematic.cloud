@@ -2,7 +2,17 @@
   <div v-if="uploading">
     <UploadProgressBar :progress="progress" />
   </div>
-  <b-form-file v-else v-model="schematic" @input="upload" />
+  <div v-else class="file-selector">
+    <p class="welcome">
+      Welcome to SchematicWeb! Please select the schematic that you want to
+      upload:
+    </p>
+    <b-form-file v-model="schematic" @input="upload" />
+    <p class="links">
+      Click here to <nuxt-link to="/download">download</nuxt-link> a schematic,
+      or here to <nuxt-link to="/delete">delete one</nuxt-link>.
+    </p>
+  </div>
 </template>
 
 <script>
@@ -23,6 +33,9 @@ export default {
     readyForUpload() {
       return !!this.schematic
     },
+    uploadUrl() {
+      return config.api_url + '/upload'
+    },
   },
   methods: {
     async upload() {
@@ -33,7 +46,7 @@ export default {
         formData.append('schematic', this.schematic)
 
         try {
-          const resp = await this.$axios.post(config.upload_url, formData, {
+          const resp = await this.$axios.post(this.uploadUrl, formData, {
             'Content-Type': 'multipart/form-data',
             onUploadProgress: (event) => {
               if (!event.lengthComputable) return
@@ -77,3 +90,17 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.file-selector {
+  p {
+    &.welcome {
+      margin-bottom: 15px;
+    }
+
+    &.links {
+      margin-top: 15px;
+    }
+  }
+}
+</style>

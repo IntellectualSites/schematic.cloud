@@ -29,10 +29,14 @@
       />
       <b-row>
         <b-col cols="6">
-          <b-button variant="danger" block>Delete</b-button>
+          <b-button variant="danger" block @click="handleDeleteClick">
+            Delete
+          </b-button>
         </b-col>
         <b-col cols="6">
-          <b-button variant="success" block>Download</b-button>
+          <b-button variant="success" block @click="handleDownloadClick">
+            Download
+          </b-button>
         </b-col>
       </b-row>
     </div>
@@ -61,6 +65,37 @@ export default {
     },
     deleteUrl(key) {
       return `${config.public_url}/delete/${key}`
+    },
+    async handleDeleteClick() {
+      const result = await this.$bvModal.msgBoxConfirm(
+        'Are you sure you want to delete the schematic? If you do this, your file will be immediately deleted from our server. This cannot be undone.',
+        {
+          title: 'Really delete?',
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'danger',
+          okTitle: 'YES',
+          cancelVariant: 'info',
+          cancelTitle: 'NO',
+          footerClass: 'p-2',
+          centered: true,
+          headerBgVariant: 'dark-transparent',
+          headerTextVariant: 'light',
+          headerBorderVariant: 'transparent',
+          bodyBgVariant: 'dark-transparent',
+          bodyTextVariant: 'light',
+          footerBgVariant: 'dark-transparent',
+          footerTextVariant: 'light',
+          footerBorderVariant: 'transparent',
+        }
+      )
+
+      if (result) {
+        this.$router.push(`/delete/${this.result.delete_key}`)
+      }
+    },
+    handleDownloadClick() {
+      this.$router.push(`/download/${this.result.download_key}`)
     },
   },
 }

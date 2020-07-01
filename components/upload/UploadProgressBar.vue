@@ -18,6 +18,7 @@ export default {
   name: 'UploadProgressBar',
   props: {
     progress: {
+      type: Number,
       required: true,
     },
     max: {
