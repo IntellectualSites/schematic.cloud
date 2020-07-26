@@ -75,6 +75,12 @@ export default {
    */
   axios: {},
   /*
+   ** Server settings
+   */
+  server: {
+    host: '0.0.0.0'
+  },
+  /*
    ** Bootstrap Vue configuration
    ** We disable automatic injection so that we
    ** can inject it in our global SCSS file. This
