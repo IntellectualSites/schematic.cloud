@@ -5,5 +5,13 @@
     ":semanticCommitsDisabled"
   ],
   "labels": ["dependencies"],
-  "rebaseWhen": "conflicted"
+  "rebaseWhen": "conflicted",
+  "packageRules": [
+    {
+      "matchPackageNames": ["sass-loader"],
+      "allowedVersions": "<=10.1.1",
+      "description": "Doesn't work with vue >= 2.6.1 and should be replaced by dart-sass",
+      "enabled": false
+    }
+  ]
 }
