@@ -12,6 +12,12 @@
       "allowedVersions": "<=10.1.1",
       "description": "Doesn't work with vue >= 2.6.1 and should be replaced by dart-sass",
       "enabled": false
+    },
+    {
+      "matchPackageNames": ["bootstrap"],
+      "allowedVersions": "<=4.6.1",
+      "description": "vue-bootstrap doesn't support boostrap 5",
+      "enabled": false
     }
   ]
 }

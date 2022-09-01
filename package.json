@@ -27,7 +27,7 @@
     "@fortawesome/vue-fontawesome": "2.0.8",
     "@nuxtjs/axios": "5.13.6",
     "@nuxtjs/dotenv": "1.4.1",
-    "bootstrap": "5.2.0",
+    "bootstrap": "4.6.1",
     "bootstrap-vue": "2.22.0",
     "funnies": "2.1.0",
     "nuxt": "2.15.8",
