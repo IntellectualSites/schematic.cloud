@@ -21,7 +21,7 @@
     "funnies": "^2.1.0",
     "nuxt": "^2.13.0",
     "nuxt-fontawesome": "^0.4.0",
-    "vue-clipboard2": "^0.3.1"
+    "vue-clipboard2": "0.3.3"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.0.0",
