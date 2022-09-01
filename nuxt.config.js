@@ -1,10 +1,5 @@
 export default {
   /*
-   ** Nuxt rendering mode
-   ** See https://nuxtjs.org/api/configuration-mode
-   */
-  mode: 'universal',
-  /*
    ** Headers of the page
    ** See https://nuxtjs.org/api/configuration-head
    */
@@ -39,7 +34,7 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     '@nuxtjs/style-resources'
-  ],  
+  ],
   /*
   ** Style Resources
   */
@@ -59,7 +54,7 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     ['nuxt-fontawesome', {
-      component: 'fa', 
+      component: 'fa',
       imports: [
         //import whole set
         {

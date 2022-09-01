@@ -1,7 +1,7 @@
 FROM node:lts
 
 # Clone and move into directory
-RUN git clone https://github.com/IntellectualSites/SchematicWeb.git /app
+RUN git clone https://github.com/IntellectualSites/schematic-web.git /app
 WORKDIR /app
 
 # Install dependencies
