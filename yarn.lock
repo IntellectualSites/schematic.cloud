@@ -11302,9 +11302,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass-loader@npm:10.1.1":
-  version: 10.1.1
-  resolution: "sass-loader@npm:10.1.1"
+"sass-loader@npm:10.3.1":
+  version: 10.3.1
+  resolution: "sass-loader@npm:10.3.1"
   dependencies:
     klona: ^2.0.4
     loader-utils: ^2.0.0
@@ -11313,7 +11313,7 @@ __metadata:
     semver: ^7.3.2
   peerDependencies:
     fibers: ">= 3.1.0"
-    node-sass: ^4.0.0 || ^5.0.0
+    node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
     sass: ^1.3.0
     webpack: ^4.36.0 || ^5.0.0
   peerDependenciesMeta:
@@ -11323,7 +11323,7 @@ __metadata:
       optional: true
     sass:
       optional: true
-  checksum: dbd4ba06e2a7de50db4588c9e84e38fb458ca4a44e1fccdf6eded728662b6fe0bd556249970876f13b47424e4285f5c6a8953933f83d47fd1448cad5884f84a5
+  checksum: ab73a41a8aae1a8b4ae607b3ab661e23e12629ea2d05904727625b201e238083e37d7686f613ddd459a1f243a1146b93cd10c9a339a4f6d11871e70c914965c4
   languageName: node
   linkType: hard
 
@@ -11427,7 +11427,7 @@ __metadata:
     nuxt-fontawesome: 0.4.0
     prettier: 2.7.1
     sass: 1.54.8
-    sass-loader: 10.1.1
+    sass-loader: 10.3.1
     vue-clipboard2: 0.3.3
   languageName: unknown
   linkType: soft
