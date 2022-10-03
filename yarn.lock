@@ -2101,7 +2101,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxtjs/eslint-module@npm:^3.1.0":
+"@nuxtjs/eslint-module@npm:3.1.0":
   version: 3.1.0
   resolution: "@nuxtjs/eslint-module@npm:3.1.0"
   dependencies:
@@ -11423,7 +11423,7 @@ __metadata:
     "@nuxtjs/axios": 5.13.6
     "@nuxtjs/dotenv": 1.4.1
     "@nuxtjs/eslint-config": 11.0.0
-    "@nuxtjs/eslint-module": ^3.1.0
+    "@nuxtjs/eslint-module": 3.1.0
     "@nuxtjs/style-resources": 1.2.1
     bootstrap: 4.6.1
     bootstrap-vue: 2.22.0
