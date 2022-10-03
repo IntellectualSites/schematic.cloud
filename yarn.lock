@@ -11348,16 +11348,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:1.54.8":
-  version: 1.54.8
-  resolution: "sass@npm:1.54.8"
+"sass@npm:1.55.0":
+  version: 1.55.0
+  resolution: "sass@npm:1.55.0"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 72893b2dc6284a6194fc560a578da57ab0082130ee558a96bcb9893cc7b517b836dac6e17b3a52b040975e70b4cdefb1268907df955a706b5bf70e3860afcfba
+  checksum: 7d769ed08efce4e6134e0f3dc11c4f07e32c413ac8eb43c5855f2686890fdcbd80da34165c91fb4ba407f478ca108e171574b5a60cb9814a5ed09d80f6014f96
   languageName: node
   linkType: hard
 
@@ -11435,7 +11435,7 @@ __metadata:
     nuxt: 2.15.8
     nuxt-fontawesome: 0.4.0
     prettier: 2.7.1
-    sass: 1.54.8
+    sass: 1.55.0
     sass-loader: 10.1.1
     vue-clipboard2: 0.3.3
   languageName: unknown
