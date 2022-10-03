@@ -3,17 +3,17 @@
     <UploadResults :result="result" @reset="reset" />
   </div>
   <div v-else>
-    <Uploader @success="success" @failed="failed" />
+    <UploaderComponent @success="success" @failed="failed" />
   </div>
 </template>
 
 <script>
 import UploadResults from '~/components/upload/UploadResults'
-import Uploader from '~/components/upload/Uploader'
+import UploaderComponent from '~/components/upload/UploaderComponent'
 
 export default {
   name: 'UploadInterface',
-  components: { UploadResults, Uploader },
+  components: { UploadResults, UploaderComponent },
   data() {
     return {
       done: false,

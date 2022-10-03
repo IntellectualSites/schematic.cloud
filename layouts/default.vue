@@ -36,7 +36,7 @@ export default {
   async mounted() {
     try {
       this.version = (await this.$axios.get(config.api_url)).data.version
-    } catch {
+    } catch (e) {
       this.version = 'unknown'
     }
   },

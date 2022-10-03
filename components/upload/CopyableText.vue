@@ -38,7 +38,7 @@ export default {
         await this.$copyText(this.value)
         this.active = true
         setTimeout(() => (this.active = false), 3000)
-      } catch {
+      } catch (e) {
         // eslint-disable-next-line
         console.error(`Failed to copy value: ${this.value}`)
       }

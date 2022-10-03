@@ -11,7 +11,8 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Easily store your NBT Minecraft schematics in the cloud for later use',
+        content:
+          'Easily store your NBT Minecraft schematics in the cloud for later use',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
@@ -19,30 +20,26 @@ export default {
   /*
    ** Global CSS
    */
-  css: [ '~/assets/style/global.scss' ],
+  css: ['~/assets/style/global.scss'],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [
-    '~/plugins/vue-clipboard'
-  ],
+  plugins: ['~/plugins/vue-clipboard'],
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
   ],
   /*
-  ** Style Resources
-  */
- styleResources: {
-   scss: [
-     '~/assets/style/colors.scss'
-   ]
- },
+   ** Style Resources
+   */
+  styleResources: {
+    scss: ['~/assets/style/colors.scss'],
+  },
   /*
    ** Nuxt.js modules
    */
@@ -53,16 +50,19 @@ export default {
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    ['nuxt-fontawesome', {
-      component: 'fa',
-      imports: [
-        //import whole set
-        {
-          set: '@fortawesome/free-solid-svg-icons',
-          icons: ['fas']
-        }
-      ]
-    }]
+    [
+      'nuxt-fontawesome',
+      {
+        component: 'fa',
+        imports: [
+          // import whole set
+          {
+            set: '@fortawesome/free-solid-svg-icons',
+            icons: ['fas'],
+          },
+        ],
+      },
+    ],
   ],
   /*
    ** Axios module configuration
@@ -73,7 +73,7 @@ export default {
    ** Server settings
    */
   server: {
-    host: '0.0.0.0'
+    host: '0.0.0.0',
   },
   /*
    ** Bootstrap Vue configuration
@@ -83,7 +83,7 @@ export default {
    */
   bootstrapVue: {
     bootstrapCSS: false,
-    bootstrapVueCSS: false
+    bootstrapVueCSS: false,
   },
   /*
    ** Build configuration
@@ -92,20 +92,8 @@ export default {
   build: {
     extend(config, ctx) {
       if (ctx.isDev) {
-       config.devtool = ctx.isClient ? 'eval-source-map' : 'inline-source-map'
-     }
-
-     if (ctx.isDev && ctx.isClient) {
-       config.module.rules.push({
-         enforce: 'pre',
-         test: /\.(js|vue)$/,
-         loader: 'eslint-loader',
-         exclude: /(node_modules)/,
-         options: {
-           fix: true
-         }
-       })
-     }
-   }
+        config.devtool = ctx.isClient ? 'eval-source-map' : 'inline-source-map'
+      }
+    },
   },
 }
