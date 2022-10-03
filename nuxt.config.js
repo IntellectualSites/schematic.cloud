@@ -93,7 +93,12 @@ export default {
     extend(config, ctx) {
       if (ctx.isDev) {
         config.devtool = ctx.isClient ? 'eval-source-map' : 'inline-source-map'
+      } else {
+        config.devtool = false
       }
+    },
+    babel: {
+      compact: true,
     },
   },
 }
