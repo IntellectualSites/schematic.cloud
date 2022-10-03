@@ -1,4 +1,4 @@
 export default {
-  public_url: 'https://sw.jacobandersen.dev',
-  api_url: 'https://ark.jacobandersen.dev',
+  public_url: 'https://schematic.cloud',
+  api_url: 'https://api.schematic.cloud',
 }

@@ -20,7 +20,7 @@ import UploadProgressBar from '~/components/upload/UploadProgressBar'
 import config from '~/config'
 
 export default {
-  name: 'Uploader',
+  name: 'UploaderComponent',
   components: { UploadProgressBar },
   data() {
     return {
