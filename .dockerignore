@@ -1,0 +1,4 @@
+.github/
+.nuxt/
+.yarn/
+node_modules/
