@@ -3238,16 +3238,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bootstrap-vue@npm:2.22.0":
-  version: 2.22.0
-  resolution: "bootstrap-vue@npm:2.22.0"
+"bootstrap-vue@npm:2.23.1":
+  version: 2.23.1
+  resolution: "bootstrap-vue@npm:2.23.1"
   dependencies:
     "@nuxt/opencollective": ^0.3.2
     bootstrap: ^4.6.1
     popper.js: ^1.16.1
     portal-vue: ^2.1.7
     vue-functional-data-merge: ^3.1.0
-  checksum: 801f148de895b4e390d2d79629f0da5c2fd8fd6d002230f4572ff0354e64f70236363bb69496451009bcd582d9b4eea2c31055649c7c99b8971bce5b418a4f01
+  checksum: b9c61625aebc08c35cc9b81661fd808044a9788889fbcdf95ab8e7d266359446472fed6725555f66e572cdf201c50114abd0320d80ffa3b2656e0a07e6ab915b
   languageName: node
   linkType: hard
 
@@ -11418,7 +11418,7 @@ __metadata:
     "@nuxtjs/eslint-module": 3.1.0
     "@nuxtjs/style-resources": 1.2.1
     bootstrap: 4.6.1
-    bootstrap-vue: 2.22.0
+    bootstrap-vue: 2.23.1
     eslint: 8.25.0
     eslint-config-prettier: 8.5.0
     eslint-plugin-nuxt: 4.0.0
