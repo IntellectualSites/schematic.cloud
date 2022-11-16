@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/IntellectualSites/schematic-web.git"
   },
-  "packageManager": "yarn@3.2.4",
+  "packageManager": "yarn@3.3.0",
   "type": "module",
   "author": "IntellectualSites",
   "bugs": {
