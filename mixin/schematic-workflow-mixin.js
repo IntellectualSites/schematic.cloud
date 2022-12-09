@@ -1,5 +1,4 @@
 import AccessKeyMixin from './access-key-mixin'
-import config from '~/config'
 
 export default {
   mixins: [AccessKeyMixin],
@@ -25,8 +24,10 @@ export default {
     },
   },
   methods: {
-    url(path) {
-      return `${config.api_url}/${path}/${this.access_key}`
+    async url(path) {
+      return `${(await this.$axios.get('config.json')).data.api_url}/${path}/${
+        this.access_key
+      }`
     },
     async checkHeaders(url, stopLoading) {
       try {

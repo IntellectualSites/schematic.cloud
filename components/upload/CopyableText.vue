@@ -1,7 +1,7 @@
 <template>
-  <b-input-group>
+  <b-input-group v-if="resolvedValue">
     <b-input-group-prepend is-text>{{ name }}</b-input-group-prepend>
-    <b-form-input :value="value" disabled />
+    <b-form-input :value="resolvedValue" disabled />
     <b-input-group-append>
       <b-button
         :variant="active ? 'success' : 'info'"
@@ -23,24 +23,29 @@ export default {
       required: true,
     },
     value: {
-      type: String,
+      type: [String, Promise],
       required: true,
     },
   },
   data() {
     return {
       active: false,
+      resolvedValue: undefined,
     }
+  },
+  async mounted() {
+    this.resolvedValue =
+      this.value instanceof Promise ? await this.value : this.value
   },
   methods: {
     async onCopy() {
       try {
-        await this.$copyText(this.value)
+        await this.$copyText(this.resolvedValue)
         this.active = true
         setTimeout(() => (this.active = false), 3000)
       } catch (e) {
         // eslint-disable-next-line
-        console.error(`Failed to copy value: ${this.value}`)
+        console.error(`Failed to copy value: ${this.resolvedValue}`)
       }
     },
   },

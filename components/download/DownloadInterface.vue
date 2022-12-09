@@ -17,14 +17,14 @@ export default {
   components: { SchematicWorkflow },
   mixins: [SchematicWorkflowMixin],
   async mounted() {
-    await this.checkHeaders(this.downloadUrl, true)
+    await this.checkHeaders(await this.downloadUrl, true)
     await this.download()
   },
   methods: {
     async download() {
       try {
         const file = (
-          await this.$axios.get(this.downloadUrl, {
+          await this.$axios.get(await this.downloadUrl, {
             responseType: 'arraybuffer',
           })
         ).data

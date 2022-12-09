@@ -25,8 +25,6 @@
 </template>
 
 <script>
-import config from '~/config'
-
 export default {
   data() {
     return {
@@ -35,7 +33,13 @@ export default {
   },
   async mounted() {
     try {
-      this.version = (await this.$axios.get(config.api_url)).data.version
+      this.version = (
+        await this.$axios.get(
+          (
+            await this.$axios.get('config.json')
+          ).data.api_url
+        )
+      ).data.version
     } catch (e) {
       this.version = 'unknown'
     }

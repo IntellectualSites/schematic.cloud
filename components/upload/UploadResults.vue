@@ -48,7 +48,6 @@
 
 <script>
 import CopyableText from '~/components/upload/CopyableText'
-import config from '~/config'
 
 export default {
   name: 'UploadResults',
@@ -60,11 +59,15 @@ export default {
     },
   },
   methods: {
-    downloadUrl(key) {
-      return `${config.public_url}/download/${key}`
+    async downloadUrl(key) {
+      return `${
+        (await this.$axios.get('config.json')).data.public_url
+      }/download/${key}`
     },
-    deleteUrl(key) {
-      return `${config.public_url}/delete/${key}`
+    async deleteUrl(key) {
+      return `${
+        (await this.$axios.get('config.json')).data.public_url
+      }/delete/${key}`
     },
     async handleDeleteClick() {
       const result = await this.$bvModal.msgBoxConfirm(
@@ -91,7 +94,7 @@ export default {
       )
 
       if (result) {
-        this.$router.push(`/delete/${this.result.delete_key}`)
+        await this.$router.push(`/delete/${this.result.delete_key}`)
       }
     },
     handleDownloadClick() {

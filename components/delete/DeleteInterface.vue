@@ -17,7 +17,7 @@ export default {
   components: { SchematicWorkflow },
   mixins: [SchematicWorkflowMixin],
   async mounted() {
-    await this.checkHeaders(this.deleteUrl, false)
+    await this.checkHeaders(await this.deleteUrl, false)
 
     if (this.hasError) {
       this.loading = false
@@ -29,7 +29,7 @@ export default {
   methods: {
     async delete() {
       try {
-        await this.$axios.delete(this.deleteUrl)
+        await this.$axios.delete(await this.deleteUrl)
         this.loading = false
       } catch (err) {
         let status = 500
