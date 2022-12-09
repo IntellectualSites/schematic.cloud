@@ -17,7 +17,6 @@
 
 <script>
 import UploadProgressBar from '~/components/upload/UploadProgressBar'
-import config from '~/config'
 
 export default {
   name: 'UploaderComponent',
@@ -33,9 +32,6 @@ export default {
     readyForUpload() {
       return !!this.schematic
     },
-    uploadUrl() {
-      return config.api_url + '/upload'
-    },
   },
   methods: {
     async upload() {
@@ -46,13 +42,17 @@ export default {
         formData.append('schematic', this.schematic)
 
         try {
-          const resp = await this.$axios.post(this.uploadUrl, formData, {
-            'Content-Type': 'multipart/form-data',
-            onUploadProgress: (event) => {
-              if (!event.lengthComputable) return
-              this.progress = Math.round((event.loaded * 100) / event.total)
-            },
-          })
+          const resp = await this.$axios.post(
+            `${(await this.$axios.get('/config.json')).data.api_url}/upload`,
+            formData,
+            {
+              'Content-Type': 'multipart/form-data',
+              onUploadProgress: (event) => {
+                if (!event.lengthComputable) return
+                this.progress = Math.round((event.loaded * 100) / event.total)
+              },
+            }
+          )
 
           this.$emit('success', {
             download_key: resp.data.download_key,
