@@ -22,6 +22,10 @@
     {
       "matchPackageNames": ["node"],
       "allowedVersions": "/16.[0-9]+.[0-9]+(.[0-9]+)?$/"
+    },
+    {
+      "matchDatasources": ["npm"],
+      "stabilityDays": 3
     }
   ]
 }
