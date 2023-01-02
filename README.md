@@ -1,5 +1,5 @@
 # schematic.cloud
-![schematic.cloud](assets/img/logo.svg)
+![schematic.cloud](https://raw.githubusercontent.com/IntellectualSites/schematic.cloud/master/assets/img/logo.svg)
 
 ## Pull from docker hub:
 
