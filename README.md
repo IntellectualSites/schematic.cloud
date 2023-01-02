@@ -1,8 +1,9 @@
 # schematic.cloud
+![schematic.cloud](assets/img/logo.svg)
 
 ## Pull from docker hub:
 
-https://hub.docker.com/r/intellectualsites/schematic-web
+https://hub.docker.com/r/intellectualsites/schematic.cloud
 
 ## Build Setup
 
