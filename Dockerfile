@@ -1,4 +1,4 @@
-FROM node:16.19.0 AS builder
+FROM node:16.19.0@sha256:64e8bcdfdad6718050801a2639f7e6645fdaf85ec37a98cdb61f6a5331217618 AS builder
 
 # Set working directory
 WORKDIR /app
