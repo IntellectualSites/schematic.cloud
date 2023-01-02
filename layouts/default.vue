@@ -5,7 +5,7 @@
         <b-col cols="8" class="mx-auto">
           <b-card bg-variant="dark-transparent" text-variant="light">
             <nuxt-link to="/">
-              <img src="~/assets/img/logo.png" alt="schematic.cloud" />
+              <img src="~/assets/img/logo.svg" alt="schematic.cloud" />
             </nuxt-link>
             <nuxt />
             <template #footer>
