@@ -1,5 +1,11 @@
 # schematic.cloud
-![schematic.cloud](https://raw.githubusercontent.com/IntellectualSites/schematic.cloud/master/assets/img/logo.svg)
+
+<a href="https://schematic.cloud">
+  <picture>
+    <source width="400" media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/IntellectualSites/schematic.cloud/master/assets/img/logo.svg">
+    <img width="400" src="https://raw.githubusercontent.com/IntellectualSites/schematic.cloud/master/assets/img/logo-darkmode.svg">
+  </picture>
+</a>
 
 ## Pull from docker hub:
 
