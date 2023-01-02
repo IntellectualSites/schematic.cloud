@@ -34,7 +34,7 @@ jobs:
         with:
           images: |
             intellectualsites/schematic-web
-            ghcr.io/IntellectualSites/schematic.cloud
+            ghcr.io/IntellectualSites/schematic-web
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v3
