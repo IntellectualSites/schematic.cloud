@@ -4,7 +4,7 @@
   </div>
   <div v-else class="file-selector">
     <p class="welcome">
-      Welcome to SchematicWeb! Please select the schematic that you want to
+      Welcome to schematic.cloud! Please select the schematic that you want to
       upload:
     </p>
     <b-form-file v-model="schematic" @input="upload" />

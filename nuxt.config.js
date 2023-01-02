@@ -4,7 +4,7 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    title: 'SchematicWeb - Upload and Store Schematics',
+    title: 'schematic.cloud - Upload and Store Schematics',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -69,7 +69,9 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    browserBaseURL: '/',
+  },
   /*
    ** Server settings
    */
