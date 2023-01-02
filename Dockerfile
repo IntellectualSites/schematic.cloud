@@ -23,7 +23,7 @@ EXPOSE 80
 
 LABEL \
   org.opencontainers.image.vendor="IntellectualSites" \
-  org.opencontainers.image.title="schematic-web" \
+  org.opencontainers.image.title="schematic.cloud" \
   org.opencontainers.image.description="Frontend for arkitektonika" \
   org.opencontainers.image.url="https://github.com/IntellectualSites" \
-  org.opencontainers.image.source="https://github.com/IntellectualSites/schematic-web"
+  org.opencontainers.image.source="https://github.com/IntellectualSites/schematic.cloud"

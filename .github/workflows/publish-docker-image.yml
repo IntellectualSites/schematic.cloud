@@ -33,7 +33,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            intellectualsites/schematic-web
+            intellectualsites/schematic.cloud
             ghcr.io/${{ github.repository }}
 
       - name: Build and push Docker images
