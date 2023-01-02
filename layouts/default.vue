@@ -12,7 +12,7 @@
               <p class="footerText">
                 schematic.cloud version {{ version }}. Made with
                 <fa :icon="['fas', 'heart']" /> by
-                <a href="https://github.com/intellectualsites" target="_blank"
+                <a href="https://github.com/IntellectualSites/schematic.cloud" target="_blank"
                   >IntellectualSites</a
                 >
               </p>
