@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/IntellectualSites/schematic.cloud#readme",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "6.2.1",
-    "@fortawesome/free-solid-svg-icons": "6.2.1",
-    "@fortawesome/vue-fontawesome": "2.0.9",
+    "@fortawesome/fontawesome-svg-core": "6.3.0",
+    "@fortawesome/free-solid-svg-icons": "6.3.0",
+    "@fortawesome/vue-fontawesome": "2.0.10",
     "@nuxtjs/axios": "5.13.6",
     "@nuxtjs/dotenv": "1.4.1",
     "bootstrap": "4.6.1",
