@@ -18,6 +18,9 @@ FROM nginx:stable-alpine
 # Copy dist files (generated) from builder layer into this (lightweight) nginx image
 COPY --from=builder /app/dist /usr/share/nginx/html
 
+# Copy required nginx config for router to work
+COPY build/nginx.conf /etc/nginx/conf.d/default.conf
+
 # Expose the port
 EXPOSE 80
 
