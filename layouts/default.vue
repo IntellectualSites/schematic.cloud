@@ -1,47 +1,60 @@
 <template>
   <Html>
-  <Head>
-    <Title>schematic.cloud - Upload and Store schematics</Title>
-    <Meta charset="UTF-8"></Meta>
-    <Meta name="viewport" content="width=device-width, initial-scale=1"></Meta>
-    <Meta name="description" hid="description" content="Easily store your NBT Minecraft schematics in the cloud for later use"></Meta>
-    <Link rel="icon" type="image/x-icon" href="/favicon.ico"></Link>
-  </Head>
-  <Body>
-  <div class="container">
-    <div class="row pt-5">
-      <div class="col-8 mx-auto">
-        <div class="card bg-dark bg-opacity-90 text-light">
-          <div class="card-body">
-            <nuxt-link to="/">
-              <img class="d-block my-0 mx-auto" src="~/assets/img/logo.svg" alt="schematic.cloud"/>
-            </nuxt-link>
-            <nuxt-page></nuxt-page>
-          </div>
-          <div class="card-footer">
-            <p class="m-0 text-center">
-              schematic.cloud version {{ version }}. Made with <span class="text-danger">&hearts;</span> by
-              <a class="text-decoration-none" href="https://github.com/IntellectualSites/schematic.cloud" target="_blank">
-                IntellectualSites
-              </a>
-            </p>
+    <Head>
+      <Title>schematic.cloud - Upload and Store schematics</Title>
+      <Meta charset="UTF-8"></Meta>
+      <Meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+      ></Meta>
+      <Meta
+        name="description"
+        hid="description"
+        content="Easily store your NBT Minecraft schematics in the cloud for later use"
+      ></Meta>
+      <Link rel="icon" type="image/x-icon" href="/favicon.ico"></Link>
+    </Head>
+    <Body>
+      <div class="container">
+        <div class="row pt-5">
+          <div class="col-8 mx-auto">
+            <div class="card bg-dark bg-opacity-90 text-light">
+              <div class="card-body">
+                <nuxt-link to="/">
+                  <img
+                    class="d-block my-0 mx-auto"
+                    src="~/assets/img/logo.svg"
+                    alt="schematic.cloud"
+                  />
+                </nuxt-link>
+                <nuxt-page></nuxt-page>
+              </div>
+              <div class="card-footer">
+                <p class="m-0 text-center">
+                  schematic.cloud version {{ version }}. Made with
+                  <span class="text-danger">&hearts;</span> by
+                  <a
+                    class="text-decoration-none"
+                    href="https://github.com/IntellectualSites/schematic.cloud"
+                    target="_blank"
+                  >
+                    IntellectualSites
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  </Body>
+    </Body>
   </Html>
 </template>
 
 <script setup lang="ts">
-
-const version = ref<string>('loading');
+const version = ref<string>('loading')
 
 onMounted(async () => {
-  version.value = (await $fetch(
-    (await $fetch('/config.json')).api_url)
-  ).version
+  version.value = (await $fetch((await $fetch('/config.json')).api_url)).version
 })
 </script>
 

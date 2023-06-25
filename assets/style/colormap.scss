@@ -1,10 +1,10 @@
-$primary: #DD7230 !default;
-$secondary: #FFB563 !default;
-$success: #D8F1A0 !default;
-$info: #E3E36A !default;
-$warning: #FF9B71 !default;
-$danger: #EA1744 !default;
-$light: #FFF2F1 !default;
+$primary: #dd7230 !default;
+$secondary: #ffb563 !default;
+$success: #d8f1a0 !default;
+$info: #e3e36a !default;
+$warning: #ff9b71 !default;
+$danger: #ea1744 !default;
+$light: #fff2f1 !default;
 $dark: #262626 !default;
 $transparent: transparent !default;
 
@@ -20,7 +20,7 @@ $theme-colors: map-merge(
     'light': $light,
     'dark': $dark,
     'dark-transparent': rgba($dark, 0.9),
-    'transparent': $transparent
+    'transparent': $transparent,
   ),
   $theme-colors
 );

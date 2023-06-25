@@ -1,3 +1,3 @@
 <template>
-  <DownloadInterface :access_key="$route.params.key" />
+  <DownloadInterface :access-key="$route.params.key" />
 </template>

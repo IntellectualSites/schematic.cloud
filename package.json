@@ -8,11 +8,10 @@
     "generate": "nuxi generate",
     "preview": "nuxi preview",
     "postinstall": "nuxi prepare",
-    "lint:js": "eslint --ext \".ts,.vue,.js\" --ignore-path .gitignore .",
+    "lint:js": "eslint --ext \".ts,.vue,.js\" .",
     "lint:prettier": "prettier --check .",
     "lint": "yarn lint:js && yarn lint:prettier",
     "lintfix": "prettier --write --list-different . && yarn lint:js --fix"
-
   },
   "repository": {
     "type": "git",

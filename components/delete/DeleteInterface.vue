@@ -7,19 +7,19 @@
 </template>
 
 <script setup lang="ts">
-import {useWorkflow} from "~/mixin/workflow";
+import { useWorkflow } from '~/mixin/workflow'
 
-const { checkHeaders, deleteUrl, hasError, state, loading} = useWorkflow()
+const { checkHeaders, deleteUrl, hasError, state, loading } = useWorkflow()
 
 const props = defineProps({
-  access_key: {
+  accessKey: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 })
 
 onMounted(async () => {
-  await checkHeaders(await deleteUrl(props.access_key!), false)
+  await checkHeaders(await deleteUrl(props.accessKey!), false)
   if (hasError()) {
     loading.value = false
     return
@@ -30,10 +30,11 @@ onMounted(async () => {
 const deleteSchematic = async () => {
   try {
     await $fetch(await deleteUrl(props.access_key!), {
-      method: 'DELETE'
+      method: 'DELETE',
     })
   } catch (err) {
-    state.value = 'unknown';
+    state.value = 'unknown'
+    // eslint-disable-next-line no-console
     console.error('Failed to delete schematic', err)
   }
 

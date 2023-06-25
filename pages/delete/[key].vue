@@ -1,3 +1,3 @@
 <template>
-  <DeleteInterface :access_key="$route.params.key" />
+  <DeleteInterface :access-key="$route.params.key" />
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <img :src="icon" class="mt-3" style="width: 55px">
+    <img :src="icon" class="mt-3" style="width: 55px" />
     <b class="mt-2 d-block">{{ text }}</b>
   </div>
 </template>
@@ -9,11 +9,11 @@
 defineProps({
   text: {
     type: String,
-    required: true
+    required: true,
   },
   icon: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 })
 </script>

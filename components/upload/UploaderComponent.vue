@@ -8,30 +8,40 @@
       upload:
     </p>
     <div class="mb-3">
-      <input tabindex="-1" class="form-control form-control-file" type="file" @change="onChange">
+      <input
+        tabindex="-1"
+        class="form-control form-control-file"
+        type="file"
+        @change="onChange"
+      />
     </div>
     <p class="links mt-4">
-      Click here to <nuxt-link class="text-decoration-none" to="/download">download</nuxt-link> a schematic,
-      or here to <nuxt-link class="text-decoration-none" to="/delete">delete one</nuxt-link>.
+      Click here to
+      <nuxt-link class="text-decoration-none" to="/download"
+        >download</nuxt-link
+      >
+      a schematic, or here to
+      <nuxt-link class="text-decoration-none" to="/delete">delete one</nuxt-link
+      >.
     </p>
   </div>
 </template>
 
 <script setup lang="ts">
-import axios from "axios";
+import axios from 'axios'
 
 const emits = defineEmits(['success', 'failed'])
 
-const uploading = ref<boolean>(false);
-const progress = ref<number>(0.0);
+const uploading = ref<boolean>(false)
+const progress = ref<number>(0.0)
 
 const onChange = async (e: InputEvent) => {
-  const files: FileList = e.target.files;
+  const files: FileList = e.target.files
 
   if (!files || files.length === 0) {
-    return;
+    return
   }
-  const file = files[0];
+  const file = files[0]
 
   uploading.value = true
 
@@ -47,7 +57,7 @@ const onChange = async (e: InputEvent) => {
         onUploadProgress: (event) => {
           if (!event.lengthComputable) return
           progress.value = Math.round((event.loaded * 100) / event.total)
-        }
+        },
       }
     )
 
