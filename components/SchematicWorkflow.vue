@@ -1,23 +1,23 @@
 <template>
   <div>
-    <LoadingSchematicData v-if="loading" />
+    <LoadingSchematicData v-if="loading || state === 'unset'"/>
     <IconScreen
-      v-else-if="notFound"
-      icon="question-circle"
+      v-else-if="state === 'not_found'"
+      icon="/icons/help-circle.svg"
       text="Schematic not found"
     />
     <IconScreen
-      v-else-if="gone"
-      icon="trash-alt"
+      v-else-if="state === 'gone'"
+      icon="/icons/trash-2.svg'"
       text="Schematic has already been deleted"
     />
     <IconScreen
-      v-else-if="unknown"
-      icon="exclamation-triangle"
+      v-else-if="state === 'unknown'"
+      icon="/icons/alert-triangle.svg"
       text="An unknown error has occurred"
     />
-    <IconScreen v-else icon="check-circle" :text="finalText" />
-    <b-button to="/" block>Head Home</b-button>
+    <IconScreen v-else icon="/icons/check-circle.svg" :text="finalText"/>
+    <nuxt-link to="/" class="btn btn-secondary d-block w-100 mt-5">Head Home</nuxt-link>
   </div>
 </template>
 
@@ -27,23 +27,14 @@ import IconScreen from '~/components/IconScreen'
 
 export default {
   name: 'SchematicWorkflow',
-  components: { LoadingSchematicData, IconScreen },
+  components: {LoadingSchematicData, IconScreen},
   props: {
     loading: {
       type: Boolean,
       default: true,
     },
-    notFound: {
-      type: Boolean,
-      default: false,
-    },
-    gone: {
-      type: Boolean,
-      default: false,
-    },
-    unknown: {
-      type: Boolean,
-      default: false,
+    state: {
+      type: String
     },
     finalText: {
       type: String,

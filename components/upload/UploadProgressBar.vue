@@ -1,58 +1,37 @@
 <template>
   <div>
-    <p class="loadingMessage">{{ loadingMessage }}</p>
-    <b-progress
-      class="progress"
-      :value="progress || 0.0"
-      :max="max"
-      show-progress
-      animated
-    />
+    <p class="text-center">{{ message }}</p>
+    <div class="progress" role="progressbar" aria-label="Upload progress" :aria-valuenow="progress || 0" aria-valuemin="0" :aria-valuemax="max" style="height: 3rem">
+      <div class="progress-bar" :style="{
+        'width': (progress || 0) + '%'
+      }">
+        {{ (progress || 0) }}%
+      </div>
+    </div>
   </div>
 </template>
 
-<script>
-import Funnies from 'funnies'
+<script setup lang="ts">
+// noinspection TypeScriptCheckImport
+import Funnies from "funnies";
 
-export default {
-  name: 'UploadProgressBar',
-  props: {
-    progress: {
-      type: Number,
-      required: true,
-    },
-    max: {
-      type: Number,
-      default: 100,
-    },
+defineProps({
+  progress: {
+    type: Number,
+    required: true
   },
-  data() {
-    return {
-      funnies: new Funnies(),
-      loadingMessage: 'loading schematic data',
-    }
-  },
-  mounted() {
-    this.generateLoadingMessage()
-    setInterval(() => this.generateLoadingMessage(), 3000)
-  },
-  methods: {
-    generateLoadingMessage() {
-      this.loadingMessage = this.funnies.message()
-    },
-  },
-}
+  max: {
+    type: Number,
+    default: 100
+  }
+})
+
+const message = ref<string>('loading schematic data')
+
+onMounted(() => {
+  const funnies = new Funnies();
+  const updateMessage = () => message.value = funnies.message();
+  setInterval(updateMessage, 3000)
+  updateMessage()
+})
 </script>
-
-<style lang="scss" scoped>
-div {
-  .loadingMessage {
-    text-align: center;
-    font-family: 'Fredoka One';
-  }
-
-  .progress {
-    height: 3rem;
-  }
-}
-</style>

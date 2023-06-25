@@ -1,13 +1,5 @@
 <template>
-  <b-card-body>
-    <UploadInterface />
-  </b-card-body>
+  <div class="card-body">
+    <UploadInterface></UploadInterface>
+  </div>
 </template>
-
-<script>
-import UploadInterface from '~/components/upload/UploadInterface'
-
-export default {
-  components: { UploadInterface },
-}
-</script>
