@@ -59,14 +59,14 @@
       <UploadCopyableText name="Delete Key" :value="result.delete_key" />
       <UploadCopyableText
         name="Download URL"
-        :value="downloadUrl(result.download_key)"
+        :value="downloadUrl(result.download_key!)"
         :is-url="true"
         url-button-txt="Download"
         url-button-variant="success"
       />
       <UploadCopyableText
         name="Delete URL"
-        :value="deleteUrl(result.delete_key)"
+        :value="deleteUrl(result.delete_key!)"
         :is-url="true"
         url-button-txt="Delete"
         url-button-variant="danger"
@@ -110,9 +110,9 @@ const emits = defineEmits(['reset'])
 const props = defineProps({
   result: {
     type: Object as PropType<{
-      download_key: string
-      delete_key: string
-      error: string
+      download_key: string | undefined
+      delete_key: string | undefined
+      error: string | undefined
     }>,
     required: true,
   },
