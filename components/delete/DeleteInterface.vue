@@ -29,7 +29,7 @@ onMounted(async () => {
 
 const deleteSchematic = async () => {
   try {
-    await $fetch(await deleteUrl(props.access_key!), {
+    await $fetch(await deleteUrl(props.accessKey!), {
       method: 'DELETE',
     })
   } catch (err) {

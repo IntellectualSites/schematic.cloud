@@ -101,26 +101,33 @@
 </template>
 
 <script setup lang="ts">
+import { PropType } from 'vue'
+import { Config } from '~/types'
+
 const modal = ref(false)
 const emits = defineEmits(['reset'])
 
 const props = defineProps({
   result: {
-    type: Object,
+    type: Object as PropType<{
+      download_key: string
+      delete_key: string
+      error: string
+    }>,
     required: true,
   },
 })
 
 const downloadUrl = async (key: string) => {
-  return `${(await $fetch('/config.json')).public_url}/download/${key}`
+  return `${(await $fetch<Config>('/config.json')).public_url}/download/${key}`
 }
 
 const deleteUrl = async (key: string) => {
-  return `${(await $fetch('/config.json')).public_url}/delete/${key}`
+  return `${(await $fetch<Config>('/config.json')).public_url}/delete/${key}`
 }
 
 const handleDownloadClick = async () => {
-  await useRouter().push(`/download/${props.result.download_key}`)
+  await useRouter().push(`/download/${props.result!.download_key}`)
 }
 
 const toggleDeleteModal = () => {
@@ -128,6 +135,6 @@ const toggleDeleteModal = () => {
 }
 
 const handleDeleteConfirm = async () => {
-  await useRouter().push(`/delete/${props.result.delete_key}`)
+  await useRouter().push(`/delete/${props.result!.delete_key}`)
 }
 </script>

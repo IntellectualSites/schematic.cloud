@@ -36,7 +36,7 @@ const uploading = ref<boolean>(false)
 const progress = ref<number>(0.0)
 
 const onChange = async (e: InputEvent) => {
-  const files: FileList = e.target.files
+  const files: FileList = (e.target as HTMLFormElement).files
 
   if (!files || files.length === 0) {
     return
@@ -55,7 +55,6 @@ const onChange = async (e: InputEvent) => {
       {
         'Content-Type': 'multipart/form-data',
         onUploadProgress: (event) => {
-          if (!event.lengthComputable) return
           progress.value = Math.round((event.loaded * 100) / event.total)
         },
       }

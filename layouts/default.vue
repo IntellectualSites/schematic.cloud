@@ -51,10 +51,14 @@
 </template>
 
 <script setup lang="ts">
+import { Config } from '~/types'
+
 const version = ref<string>('loading')
 
 onMounted(async () => {
-  version.value = (await $fetch((await $fetch('/config.json')).api_url)).version
+  version.value = (
+    await $fetch((await $fetch<Config>('/config.json')).api_url)
+  ).version
 })
 </script>
 
