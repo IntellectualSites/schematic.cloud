@@ -1,50 +1,43 @@
 <template>
   <SchematicWorkflow
     :loading="loading"
-    :not-found="errors.notFound"
-    :gone="errors.gone"
-    :unknown="errors.unknown"
+    :state="state"
     final-text="Your schematic has been deleted."
   />
 </template>
 
-<script>
-import SchematicWorkflow from '~/components/SchematicWorkflow'
-import SchematicWorkflowMixin from '~/mixin/schematic-workflow-mixin'
+<script setup lang="ts">
+import { useWorkflow } from '~/mixin/workflow'
 
-export default {
-  name: 'DeleteInterface',
-  components: { SchematicWorkflow },
-  mixins: [SchematicWorkflowMixin],
-  async mounted() {
-    await this.checkHeaders(await this.deleteUrl, false)
+const { checkHeaders, deleteUrl, hasError, state, loading } = useWorkflow()
 
-    if (this.hasError) {
-      this.loading = false
-      return
-    }
-
-    await this.delete()
+const props = defineProps({
+  accessKey: {
+    type: String,
+    required: true,
   },
-  methods: {
-    async delete() {
-      try {
-        await this.$axios.delete(await this.deleteUrl)
-        this.loading = false
-      } catch (err) {
-        let status = 500
-        if (err.response) {
-          status = err.response.status
-        }
+})
 
-        if (status === 500) {
-          this.errors.unknown = true
-        } else {
-          // eslint-disable-next-line
-          console.error("Unexpected error code in delete handler. This should not happen.")
-        }
-      }
-    },
-  },
+onMounted(async () => {
+  await checkHeaders(await deleteUrl(props.accessKey!), false)
+  if (hasError()) {
+    loading.value = false
+    return
+  }
+  await deleteSchematic()
+})
+
+const deleteSchematic = async () => {
+  try {
+    await $fetch(await deleteUrl(props.accessKey!), {
+      method: 'DELETE',
+    })
+  } catch (err) {
+    state.value = 'unknown'
+    // eslint-disable-next-line no-console
+    console.error('Failed to delete schematic', err)
+  }
+
+  loading.value = false
 }
 </script>

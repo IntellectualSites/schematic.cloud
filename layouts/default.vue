@@ -1,71 +1,72 @@
 <template>
-  <div id="app">
-    <b-container>
-      <b-row>
-        <b-col cols="8" class="mx-auto">
-          <b-card bg-variant="dark-transparent" text-variant="light">
-            <nuxt-link to="/">
-              <img src="~/assets/img/logo.svg" alt="schematic.cloud" />
-            </nuxt-link>
-            <nuxt />
-            <template #footer>
-              <p class="footerText">
-                schematic.cloud version {{ version }}. Made with
-                <fa :icon="['fas', 'heart']" /> by
-                <a href="https://github.com/IntellectualSites/schematic.cloud" target="_blank"
-                  >IntellectualSites</a
-                >
-              </p>
-            </template>
-          </b-card>
-        </b-col>
-      </b-row>
-    </b-container>
-  </div>
+  <Html>
+    <Head>
+      <Title>schematic.cloud - Upload and Store schematics</Title>
+      <Meta charset="UTF-8"></Meta>
+      <Meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+      ></Meta>
+      <Meta
+        name="description"
+        hid="description"
+        content="Easily store your NBT Minecraft schematics in the cloud for later use"
+      ></Meta>
+      <Link rel="icon" type="image/x-icon" href="/favicon.ico"></Link>
+    </Head>
+    <Body>
+      <div class="container">
+        <div class="row pt-5">
+          <div class="col-8 mx-auto">
+            <div class="card bg-dark bg-opacity-90 text-light">
+              <div class="card-body">
+                <nuxt-link to="/">
+                  <img
+                    class="d-block my-0 mx-auto"
+                    src="~/assets/img/logo.svg"
+                    alt="schematic.cloud"
+                  />
+                </nuxt-link>
+                <nuxt-page></nuxt-page>
+              </div>
+              <div class="card-footer">
+                <p class="m-0 text-center">
+                  schematic.cloud version {{ version }}. Made with
+                  <span class="text-danger">&hearts;</span> by
+                  <a
+                    class="text-decoration-none"
+                    href="https://github.com/IntellectualSites/schematic.cloud"
+                    target="_blank"
+                  >
+                    IntellectualSites
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Body>
+  </Html>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      version: 'loading',
-    }
-  },
-  async mounted() {
-    try {
-      this.version = (
-        await this.$axios.get(
-          (
-            await this.$axios.get('config.json')
-          ).data.api_url
-        )
-      ).data.version
-    } catch (e) {
-      this.version = 'unknown'
-    }
-  },
-}
+<script setup lang="ts">
+import { Config } from '~/types'
+
+const version = ref<string>('loading')
+
+onMounted(async () => {
+  version.value = (
+    await $fetch((await $fetch<Config>('/config.json')).api_url)
+  ).version
+})
 </script>
 
-<style lang="scss" scoped>
-#app {
-  background-image: url('~assets/img/background.svg');
+<style>
+body {
+  background-image: url('~/assets/img/background.svg');
   background-position: center;
   background-size: cover;
   min-height: 100vh;
-
-  .row {
-    padding-top: 100px;
-
-    img {
-      display: block;
-      margin: 0 auto;
-    }
-  }
-
-  .footerText {
-    text-align: center;
-    margin: 0;
-  }
 }
 </style>

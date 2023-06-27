@@ -1,9 +1,53 @@
 <template>
   <div>
     <div v-if="result.error" class="text">
-      <p>{{ result.error }}</p>
+      <b class="d-block py-4">{{ result.error }}</b>
     </div>
     <div v-else>
+      <div
+        class="modal fade bg-opacity-50 bg-dark show"
+        :class="{
+          'd-block': modal,
+        }"
+        tabindex="-1"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content bg-dark">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5">Really delete?</h1>
+              <button
+                type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                @click="toggleDeleteModal"
+              ></button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to delete the schematic? If you do this,
+              your file will be immediately deleted from our server. This cannot
+              be undone.
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-info"
+                data-bs-dismiss="modal"
+                @click="toggleDeleteModal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                @click="handleDeleteConfirm"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="text">
         <p>
           You'll only see these values once. Make sure to make note of these
@@ -11,110 +55,86 @@
           otherwise you won't be able to delete this schematic.
         </p>
       </div>
-      <CopyableText name="Download Key" :value="result.download_key" />
-      <CopyableText name="Delete Key" :value="result.delete_key" />
-      <CopyableText
+      <UploadCopyableText name="Download Key" :value="result.download_key" />
+      <UploadCopyableText name="Delete Key" :value="result.delete_key" />
+      <UploadCopyableText
         name="Download URL"
-        :value="downloadUrl(result.download_key)"
+        :value="downloadUrl(result.download_key!)"
         :is-url="true"
         url-button-txt="Download"
         url-button-variant="success"
       />
-      <CopyableText
+      <UploadCopyableText
         name="Delete URL"
-        :value="deleteUrl(result.delete_key)"
+        :value="deleteUrl(result.delete_key!)"
         :is-url="true"
         url-button-txt="Delete"
         url-button-variant="danger"
       />
-      <b-row>
-        <b-col cols="6">
-          <b-button variant="danger" block @click="handleDeleteClick">
+      <div class="row">
+        <div class="col-6">
+          <button
+            class="btn btn-danger d-block w-100"
+            @click="toggleDeleteModal"
+          >
             Delete
-          </b-button>
-        </b-col>
-        <b-col cols="6">
-          <b-button variant="success" block @click="handleDownloadClick">
+          </button>
+        </div>
+
+        <div class="col-6">
+          <button
+            class="btn btn-success d-block w-100"
+            @click="handleDownloadClick"
+          >
             Download
-          </b-button>
-        </b-col>
-      </b-row>
+          </button>
+        </div>
+      </div>
     </div>
-    <b-button class="resetBtn" block @click="$emit('reset')"
-      >Upload Another File</b-button
+    <button
+      class="btn btn-secondary d-block w-100 mt-3"
+      @click="emits('reset')"
     >
+      Upload another File
+    </button>
   </div>
 </template>
 
-<script>
-import CopyableText from '~/components/upload/CopyableText'
+<script setup lang="ts">
+import { PropType } from 'vue'
+import { Config } from '~/types'
 
-export default {
-  name: 'UploadResults',
-  components: { CopyableText },
-  props: {
-    result: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    async downloadUrl(key) {
-      return `${
-        (await this.$axios.get('config.json')).data.public_url
-      }/download/${key}`
-    },
-    async deleteUrl(key) {
-      return `${
-        (await this.$axios.get('config.json')).data.public_url
-      }/delete/${key}`
-    },
-    async handleDeleteClick() {
-      const result = await this.$bvModal.msgBoxConfirm(
-        'Are you sure you want to delete the schematic? If you do this, your file will be immediately deleted from our server. This cannot be undone.',
-        {
-          title: 'Really delete?',
-          size: 'sm',
-          buttonSize: 'sm',
-          okVariant: 'danger',
-          okTitle: 'YES',
-          cancelVariant: 'info',
-          cancelTitle: 'NO',
-          footerClass: 'p-2',
-          centered: true,
-          headerBgVariant: 'dark-transparent',
-          headerTextVariant: 'light',
-          headerBorderVariant: 'transparent',
-          bodyBgVariant: 'dark-transparent',
-          bodyTextVariant: 'light',
-          footerBgVariant: 'dark-transparent',
-          footerTextVariant: 'light',
-          footerBorderVariant: 'transparent',
-        }
-      )
+const modal = ref(false)
+const emits = defineEmits(['reset'])
 
-      if (result) {
-        await this.$router.push(`/delete/${this.result.delete_key}`)
-      }
-    },
-    handleDownloadClick() {
-      this.$router.push(`/download/${this.result.download_key}`)
-    },
+const props = defineProps({
+  result: {
+    type: Object as PropType<{
+      download_key: string | undefined
+      delete_key: string | undefined
+      error: string | undefined
+    }>,
+    required: true,
   },
+})
+
+const downloadUrl = async (key: string) => {
+  return `${(await $fetch<Config>('/config.json')).public_url}/download/${key}`
+}
+
+const deleteUrl = async (key: string) => {
+  return `${(await $fetch<Config>('/config.json')).public_url}/delete/${key}`
+}
+
+const handleDownloadClick = async () => {
+  await useRouter().push(`/download/${props.result!.download_key}`)
+}
+
+const toggleDeleteModal = () => {
+  modal.value = !modal.value
+}
+
+const handleDeleteConfirm = async () => {
+  await useRouter().push(`/delete/${props.result!.delete_key}`)
 }
 </script>
-
-<style lang="scss" scoped>
-.text {
-  font-family: 'Fredoka One';
-  margin-bottom: 20px;
-
-  p {
-    margin-bottom: 3px;
-  }
-}
-
-.resetBtn {
-  margin-top: 15px;
-}
-</style>

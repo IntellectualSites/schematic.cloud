@@ -1,3 +1,13 @@
+$primary: #dd7230 !default;
+$secondary: #ffb563 !default;
+$success: #d8f1a0 !default;
+$info: #e3e36a !default;
+$warning: #ff9b71 !default;
+$danger: #ea1744 !default;
+$light: #fff2f1 !default;
+$dark: #262626 !default;
+$transparent: transparent !default;
+
 $theme-colors: () !default;
 $theme-colors: map-merge(
   (
@@ -10,7 +20,7 @@ $theme-colors: map-merge(
     'light': $light,
     'dark': $dark,
     'dark-transparent': rgba($dark, 0.9),
-    'transparent': $transparent
+    'transparent': $transparent,
   ),
   $theme-colors
 );

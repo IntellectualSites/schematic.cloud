@@ -1,67 +1,52 @@
 <template>
-  <b-input-group v-if="resolvedValue">
-    <b-input-group-prepend is-text>{{ name }}</b-input-group-prepend>
-    <b-form-input :value="resolvedValue" disabled />
-    <b-input-group-append>
-      <b-button
-        :variant="active ? 'success' : 'info'"
-        :disabled="active"
-        @click="onCopy()"
-      >
-        {{ active ? 'Copied' : 'Copy' }}
-      </b-button>
-    </b-input-group-append>
-  </b-input-group>
+  <div class="input-group mb-3">
+    <span class="input-group-text" style="width: 20%">{{ name }}</span>
+    <input type="text" class="form-control" :value="resolvedValue" disabled />
+    <button
+      class="btn"
+      :class="{
+        'btn-info': !active,
+        'btn-success': active,
+      }"
+      type="button"
+      :disabled="active"
+      @click="onCopy"
+    >
+      {{ active ? 'Copied' : 'Copy' }}
+    </button>
+  </div>
 </template>
 
-<script>
-export default {
-  name: 'CopyableText',
-  props: {
-    name: {
-      type: String,
-      required: true,
-    },
-    value: {
-      type: [String, Promise],
-      required: true,
-    },
-  },
-  data() {
-    return {
-      active: false,
-      resolvedValue: undefined,
-    }
-  },
-  async mounted() {
-    this.resolvedValue =
-      this.value instanceof Promise ? await this.value : this.value
-  },
-  methods: {
-    async onCopy() {
-      try {
-        await this.$copyText(this.resolvedValue)
-        this.active = true
-        setTimeout(() => (this.active = false), 3000)
-      } catch (e) {
-        // eslint-disable-next-line
-        console.error(`Failed to copy value: ${this.resolvedValue}`)
-      }
-    },
-  },
-}
-</script>
+<script setup lang="ts">
+import useClipboard from 'vue-clipboard3/dist/esm'
 
-<style lang="scss" scoped>
-.input-group {
-  margin-bottom: 15px;
-  .input-group-prepend {
-    width: 23%;
+const active = ref<boolean>(false)
+const resolvedValue = ref<string | undefined>(undefined)
 
-    .input-group-text {
-      width: 100%;
-      overflow: hidden;
-    }
+const props = defineProps({
+  name: {
+    type: String,
+    required: true,
+  },
+  value: {
+    type: [String, Promise],
+    required: true,
+  },
+})
+
+onMounted(async () => {
+  resolvedValue.value =
+    props.value instanceof Promise ? await props.value : props.value
+})
+
+const onCopy = async () => {
+  try {
+    await useClipboard().toClipboard(resolvedValue.value!)
+    active.value = true
+    setTimeout(() => (active.value = false), 3000)
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error(`Failed to copy value: ${resolvedValue.value}`, e)
   }
 }
-</style>
+</script>

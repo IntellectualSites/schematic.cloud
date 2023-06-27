@@ -3,18 +3,21 @@
   "version": "1.1.6-SNAPSHOT",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint": "yarn lint:js"
+    "build": "nuxi build",
+    "dev": "nuxi dev",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
+    "postinstall": "nuxi prepare",
+    "lint:js": "eslint --ext \".ts,.vue,.js\" .",
+    "lint:prettier": "prettier --check .",
+    "lint": "yarn lint:js && yarn lint:prettier",
+    "lintfix": "prettier --write --list-different . && yarn lint:js --fix"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/IntellectualSites/schematic.cloud.git"
   },
-  "packageManager": "yarn@3.5.1",
+  "packageManager": "yarn@3.6.0",
   "type": "module",
   "author": "IntellectualSites",
   "bugs": {
@@ -22,29 +25,20 @@
   },
   "homepage": "https://github.com/IntellectualSites/schematic.cloud#readme",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "6.4.0",
-    "@fortawesome/free-solid-svg-icons": "6.4.0",
-    "@fortawesome/vue-fontawesome": "3.0.3",
-    "@nuxtjs/axios": "5.13.6",
-    "@nuxtjs/dotenv": "1.4.1",
-    "bootstrap": "4.6.1",
-    "bootstrap-vue": "2.23.1",
+    "axios": "^1.4.0",
+    "bootstrap": "5.3.0",
     "funnies": "2.1.0",
-    "nuxt": "2.16.3",
-    "nuxt-fontawesome": "0.4.0",
-    "vue-clipboard2": "0.3.3"
+    "nuxt": "3.6.0",
+    "vue-clipboard3": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "7.21.8",
-    "@nuxtjs/eslint-config": "12.0.0",
-    "@nuxtjs/eslint-module": "4.1.0",
-    "@nuxtjs/style-resources": "1.2.1",
-    "eslint": "8.41.0",
-    "eslint-config-prettier": "8.8.0",
-    "eslint-plugin-nuxt": "4.0.0",
-    "eslint-plugin-prettier": "4.2.1",
-    "prettier": "2.8.8",
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@typescript-eslint/parser": "^5.60.0",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.8",
     "sass": "1.62.1",
-    "sass-loader": "10.1.1"
+    "typescript": "^5.1.3"
   }
 }

@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <b-spinner class="loading" />
-    <p>{{ loadingMessage }}</p>
+  <div class="pt-4">
+    <div class="spinner-border d-block mx-auto my-0"></div>
+    <p class="pt-4 text-center">{{ loadingMessage }}</p>
   </div>
 </template>
 
@@ -27,25 +27,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-$spinner: 5rem;
-$padding: 30px;
-
-div {
-  padding-top: $padding;
-
-  .loading {
-    width: $spinner;
-    height: $spinner;
-    margin: 0 auto;
-    display: block;
-  }
-
-  p {
-    text-align: center;
-    font-family: 'Fredoka One';
-    padding-top: $padding;
-  }
-}
-</style>

@@ -3,104 +3,93 @@
     <UploadProgressBar :progress="progress" />
   </div>
   <div v-else class="file-selector">
-    <p class="welcome">
+    <p class="welcome mb-4">
       Welcome to schematic.cloud! Please select the schematic that you want to
       upload:
     </p>
-    <b-form-file v-model="schematic" @input="upload" />
-    <p class="links">
-      Click here to <nuxt-link to="/download">download</nuxt-link> a schematic,
-      or here to <nuxt-link to="/delete">delete one</nuxt-link>.
+    <div class="mb-3">
+      <input
+        tabindex="-1"
+        class="form-control form-control-file"
+        type="file"
+        @change="onChange"
+      />
+    </div>
+    <p class="links mt-4">
+      Click here to
+      <nuxt-link class="text-decoration-none" to="/download"
+        >download</nuxt-link
+      >
+      a schematic, or here to
+      <nuxt-link class="text-decoration-none" to="/delete">delete one</nuxt-link
+      >.
     </p>
   </div>
 </template>
 
-<script>
-import UploadProgressBar from '~/components/upload/UploadProgressBar'
+<script setup lang="ts">
+import axios from 'axios'
 
-export default {
-  name: 'UploaderComponent',
-  components: { UploadProgressBar },
-  data() {
-    return {
-      schematic: undefined,
-      uploading: false,
-      progress: 0.0,
-    }
-  },
-  computed: {
-    readyForUpload() {
-      return !!this.schematic
-    },
-  },
-  methods: {
-    async upload() {
-      if (this.readyForUpload) {
-        this.uploading = true
+const emits = defineEmits(['success', 'failed'])
 
-        const formData = new FormData()
-        formData.append('schematic', this.schematic)
+const uploading = ref<boolean>(false)
+const progress = ref<number>(0.0)
 
-        try {
-          const resp = await this.$axios.post(
-            `${(await this.$axios.get('/config.json')).data.api_url}/upload`,
-            formData,
-            {
-              'Content-Type': 'multipart/form-data',
-              onUploadProgress: (event) => {
-                if (!event.lengthComputable) return
-                this.progress = Math.round((event.loaded * 100) / event.total)
-              },
-            }
-          )
+const onChange = async (e: InputEvent) => {
+  const files: FileList = (e.target as HTMLFormElement).files
 
-          this.$emit('success', {
-            download_key: resp.data.download_key,
-            delete_key: resp.data.delete_key,
-          })
-        } catch (err) {
-          let status
-          if (err.response) {
-            status = err.response.status
-          }
+  if (!files || files.length === 0) {
+    return
+  }
+  const file = files[0]
 
-          let error
-          switch (status) {
-            case 400:
-              error =
-                'The file you uploaded was not valid NBT, and so it has been rejected. Please upload a valid NBT file.'
-              break
-            case 500:
-              error =
-                'The file could not be saved at the server level, and so it your upload was rejected. Please try again, or report this issue to the developer.'
-              break
-            case undefined:
-            default:
-              error =
-                'An unknown error occurred while trying to upload your file. Please try again, or report this issue to the developer.'
-              break
-          }
+  uploading.value = true
 
-          this.$emit('failed', error)
-        }
+  const formData = new FormData()
+  formData.append('schematic', file)
 
-        this.uploading = false
+  try {
+    const resp = await axios.post(
+      `${(await $fetch('/config.json')).api_url}/upload`,
+      formData,
+      {
+        'Content-Type': 'multipart/form-data',
+        onUploadProgress: (event) => {
+          progress.value = Math.round((event.loaded * 100) / event.total)
+        },
       }
-    },
-  },
+    )
+
+    emits('success', {
+      download_key: resp.data.download_key,
+      delete_key: resp.data.delete_key,
+    })
+  } catch (err) {
+    let status
+    if (err.response) {
+      status = err.response.status
+    }
+
+    let error
+    switch (status) {
+      case 400:
+        error =
+          'The file you uploaded was not valid NBT, and so it has been rejected. Please upload a valid NBT file.'
+        break
+      case 500:
+        error =
+          'The file could not be saved at the server level, and so it your upload was rejected. Please try again, or report this issue to the developer.'
+        break
+      case undefined:
+      default:
+        error =
+          'An unknown error occurred while trying to upload your file. Please try again, or report this issue to the developer.'
+        break
+    }
+
+    emits('failed', error)
+  }
+
+  uploading.value = false
 }
 </script>
-
-<style lang="scss">
-.file-selector {
-  p {
-    &.welcome {
-      margin-bottom: 15px;
-    }
-
-    &.links {
-      margin-top: 15px;
-    }
-  }
-}
-</style>

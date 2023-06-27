@@ -5,11 +5,3 @@
     path="/download"
   />
 </template>
-
-<script>
-import KeyForm from '~/components/KeyForm'
-
-export default {
-  components: { KeyForm },
-}
-</script>
