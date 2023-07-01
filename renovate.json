@@ -3,6 +3,7 @@
   "extends": ["config:base", ":semanticCommitsDisabled"],
   "labels": ["dependencies"],
   "rebaseWhen": "conflicted",
+  "automerge": true,
   "packageRules": [
     {
       "matchPackageNames": ["sass-loader"],
