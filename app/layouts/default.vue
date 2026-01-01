@@ -20,7 +20,7 @@
           <div class="col-8 mx-auto">
             <div class="card bg-dark bg-opacity-90 text-light">
               <div class="card-body">
-                <nuxt-link to="/">
+                <nuxt-link to="/public">
                   <img
                     class="d-block my-0 mx-auto"
                     src="~/assets/img/logo.svg"

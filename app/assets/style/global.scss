@@ -1,0 +1,9 @@
+// Custom Colormap
+@import 'colormap';
+
+// Bootstrap
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+.bg-opacity-90 {
+  --bs-bg-opacity: 0.9;
+}

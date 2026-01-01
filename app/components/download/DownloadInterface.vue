@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { useWorkflow } from '~/mixin/workflow'
+import { useWorkflow } from '~/app/mixin/workflow'
 
 const { checkHeaders, downloadUrl, hasError, state, loading } = useWorkflow()
 
