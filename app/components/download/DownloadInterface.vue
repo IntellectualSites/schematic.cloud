@@ -12,7 +12,7 @@ const { checkHeaders, downloadUrl, hasError, state, loading } = useWorkflow()
 const props = defineProps({
   accessKey: {
     type: String,
-    required: true
+    required: true,
   },
 })
 

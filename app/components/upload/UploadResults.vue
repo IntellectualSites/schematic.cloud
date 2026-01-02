@@ -101,15 +101,14 @@
 </template>
 
 <script setup lang="ts">
-
 const modal = ref(false)
 const emits = defineEmits(['reset'])
 
 defineProps({
   result: {
     type: Object as PropType<UploadResult>,
-    required: true
-  }
+    required: true,
+  },
 })
 
 const downloadUrl = async (key: string) => {
@@ -131,5 +130,4 @@ const handleDeleteConfirm = async (key: string) => {
 const toggleDeleteModal = () => {
   modal.value = !modal.value
 }
-
 </script>

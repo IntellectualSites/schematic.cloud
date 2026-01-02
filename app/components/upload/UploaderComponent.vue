@@ -17,9 +17,12 @@
     </div>
     <p class="links mt-4">
       Click here to
-      <nuxt-link class="text-decoration-none" to="/download">download</nuxt-link>
+      <nuxt-link class="text-decoration-none" to="/download"
+        >download</nuxt-link
+      >
       a schematic, or here to
-      <nuxt-link class="text-decoration-none" to="/delete">delete one</nuxt-link>.
+      <nuxt-link class="text-decoration-none" to="/delete">delete one</nuxt-link
+      >.
     </p>
   </div>
 </template>
@@ -51,19 +54,19 @@ const onChange = async (e: InputEvent) => {
       formData,
       {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
         },
         onUploadProgress: (event) => {
           if (event.total) {
             progress.value = Math.round((event.loaded * 100) / event.total)
           }
-        }
-      }
+        },
+      },
     )
 
     emits('success', {
       download_key: resp.data.download_key,
-      delete_key: resp.data.delete_key
+      delete_key: resp.data.delete_key,
     })
   } catch (err) {
     let status

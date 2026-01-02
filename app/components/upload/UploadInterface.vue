@@ -20,14 +20,14 @@ const onUploadSuccess = (keys: {
   result.value = {
     success: true,
     download_key: keys.download_key,
-    delete_key: keys.delete_key
+    delete_key: keys.delete_key,
   }
 }
 
 const onUploadFailed = (error: string) => {
   result.value = {
     success: false,
-    error
+    error,
   }
 }
 

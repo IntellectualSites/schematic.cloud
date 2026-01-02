@@ -1,6 +1,6 @@
 <template>
   <div class="pt-4">
-    <div class="spinner-border d-block mx-auto my-0"/>
+    <div class="spinner-border d-block mx-auto my-0" />
     <p class="pt-4 text-center">{{ loadingMessage }}</p>
   </div>
 </template>

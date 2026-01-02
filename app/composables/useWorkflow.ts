@@ -4,7 +4,7 @@ import { AxiosError } from 'axios'
 export const useWorkflow = () => {
   const loading = ref(true)
   const state = ref<'success' | 'gone' | 'not_found' | 'unknown' | 'unset'>(
-    'unset'
+    'unset',
   )
 
   const url = async (path: string, key: string) => {

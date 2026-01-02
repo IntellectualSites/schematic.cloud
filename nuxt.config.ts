@@ -14,10 +14,15 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          silenceDeprecations: ['color-functions', 'global-builtin', 'import', "if-function"]
-        }
-      }
-    }
+          silenceDeprecations: [
+            'color-functions',
+            'global-builtin',
+            'import',
+            'if-function',
+          ],
+        },
+      },
+    },
   },
-  modules: ['@nuxt/eslint']
+  modules: ['@nuxt/eslint'],
 })
