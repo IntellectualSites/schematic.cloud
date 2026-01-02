@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios'
+import { FetchError } from 'ofetch'
 
 // noinspection JSUnusedGlobalSymbols
 export const useWorkflow = () => {
@@ -21,8 +21,8 @@ export const useWorkflow = () => {
       state.value = 'success'
     } catch (err) {
       let status
-      if (err instanceof AxiosError && err.response) {
-        status = err.response.status
+      if (err instanceof FetchError && err.status) {
+        status = err.status
       }
 
       switch (status) {
