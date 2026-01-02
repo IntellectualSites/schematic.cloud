@@ -1,4 +1,4 @@
-export function useWorkflow() {
+export const useWorkflow = () => {
   const loading = ref(true)
   const state = ref<'success' | 'gone' | 'not_found' | 'unknown' | 'unset'>(
     'unset'

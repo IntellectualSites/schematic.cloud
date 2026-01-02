@@ -29,7 +29,7 @@ const props = defineProps({
     required: true,
   },
   value: {
-    type: [String, Promise],
+    type: Object as PropType<string | PromiseLike<string>>,
     required: true,
   },
 })

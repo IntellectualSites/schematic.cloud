@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="result.error" class="text">
+    <div v-if="!result.success" class="text">
       <b class="d-block py-4">{{ result.error }}</b>
     </div>
     <div v-else>
@@ -14,7 +14,7 @@
         <div class="modal-dialog">
           <div class="modal-content bg-dark">
             <div class="modal-header">
-              <h1 class="modal-title fs-5">Really delete?</h1>
+              <h1 class="modal-title fs-5 text-light">Really delete?</h1>
               <button
                 type="button"
                 class="btn-close btn-close-white"
@@ -23,7 +23,7 @@
                 @click="toggleDeleteModal"
               ></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body text-light">
               Are you sure you want to delete the schematic? If you do this,
               your file will be immediately deleted from our server. This cannot
               be undone.
@@ -40,7 +40,7 @@
               <button
                 type="button"
                 class="btn btn-danger"
-                @click="handleDeleteConfirm"
+                @click="handleDeleteConfirm(result.delete_key)"
               >
                 Confirm
               </button>
@@ -84,7 +84,7 @@
         <div class="col-6">
           <button
             class="btn btn-success d-block w-100"
-            @click="handleDownloadClick"
+            @click="handleDownloadClick(result.download_key)"
           >
             Download
           </button>
@@ -101,21 +101,15 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
-import { Config } from '~/types'
 
 const modal = ref(false)
 const emits = defineEmits(['reset'])
 
-const props = defineProps({
+defineProps({
   result: {
-    type: Object as PropType<{
-      download_key: string | undefined
-      delete_key: string | undefined
-      error: string | undefined
-    }>,
-    required: true,
-  },
+    type: Object as PropType<UploadResult>,
+    required: true
+  }
 })
 
 const downloadUrl = async (key: string) => {
@@ -126,15 +120,16 @@ const deleteUrl = async (key: string) => {
   return `${(await $fetch<Config>('/config.json')).public_url}/delete/${key}`
 }
 
-const handleDownloadClick = async () => {
-  await useRouter().push(`/download/${props.result!.download_key}`)
+const handleDownloadClick = async (key: string) => {
+  await useRouter().push(`/download/${key}`)
+}
+
+const handleDeleteConfirm = async (key: string) => {
+  await useRouter().push(`/delete/${key}`)
 }
 
 const toggleDeleteModal = () => {
   modal.value = !modal.value
 }
 
-const handleDeleteConfirm = async () => {
-  await useRouter().push(`/delete/${props.result!.delete_key}`)
-}
 </script>

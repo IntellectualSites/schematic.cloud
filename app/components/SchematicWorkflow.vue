@@ -17,15 +17,13 @@
       text="An unknown error has occurred"
     />
     <IconScreen v-else icon="/icons/check-circle.svg" :text="finalText" />
-    <nuxt-link to="/public" class="btn btn-secondary d-block w-100 mt-5"
-      >Head Home</nuxt-link
-    >
+    <nuxt-link to="/" class="btn btn-secondary d-block w-100 mt-5">Head Home</nuxt-link>
   </div>
 </template>
 
 <script>
-import LoadingSchematicData from '~/app/components/LoadingSchematicData.vue'
-import IconScreen from '~/app/components/IconScreen.vue'
+import LoadingSchematicData from '~/components/LoadingSchematicData.vue'
+import IconScreen from '~/components/IconScreen.vue'
 
 export default {
   name: 'SchematicWorkflow',

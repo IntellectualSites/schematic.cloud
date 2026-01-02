@@ -14,11 +14,11 @@
 defineProps({
   text: {
     type: String,
-    required: true,
+    required: true
   },
   icon: {
     type: String,
-    required: true,
-  },
+    required: true
+  }
 })
 </script>

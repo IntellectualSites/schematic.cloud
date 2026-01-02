@@ -7,8 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import { useWorkflow } from '~/app/mixin/workflow'
-
 const { checkHeaders, deleteUrl, hasError, state, loading } = useWorkflow()
 
 const props = defineProps({

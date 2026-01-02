@@ -20,7 +20,7 @@
           <div class="col-8 mx-auto">
             <div class="card bg-dark bg-opacity-90 text-light">
               <div class="card-body">
-                <nuxt-link to="/public">
+                <nuxt-link to="/">
                   <img
                     class="d-block my-0 mx-auto"
                     src="~/assets/img/logo.svg"
@@ -51,13 +51,11 @@
 </template>
 
 <script setup lang="ts">
-import { Config } from '~/types'
-
 const version = ref<string>('loading')
 
 onMounted(async () => {
   version.value = (
-    await $fetch((await $fetch<Config>('/config.json')).api_url)
+    await $fetch<{ version: string }>((await $fetch<Config>('/config.json')).api_url)
   ).version
 })
 </script>

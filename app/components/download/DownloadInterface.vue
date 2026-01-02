@@ -7,25 +7,23 @@
 </template>
 
 <script setup lang="ts">
-import { useWorkflow } from '~/app/mixin/workflow'
-
 const { checkHeaders, downloadUrl, hasError, state, loading } = useWorkflow()
 
 const props = defineProps({
   accessKey: {
     type: String,
-    required: true,
+    required: true
   },
 })
 
 onMounted(async () => {
-  await checkHeaders(await downloadUrl(props.accessKey!))
+  await checkHeaders(await downloadUrl(props.accessKey))
   if (hasError()) {
     return
   }
   try {
     const link = document.createElement('a')
-    link.href = await downloadUrl(props.accessKey!)
+    link.href = await downloadUrl(props.accessKey)
     link.click()
     link.remove()
   } catch (err) {

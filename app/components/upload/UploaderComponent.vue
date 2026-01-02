@@ -17,12 +17,9 @@
     </div>
     <p class="links mt-4">
       Click here to
-      <nuxt-link class="text-decoration-none" to="/download"
-        >download</nuxt-link
-      >
+      <nuxt-link class="text-decoration-none" to="/download">download</nuxt-link>
       a schematic, or here to
-      <nuxt-link class="text-decoration-none" to="/delete">delete one</nuxt-link
-      >.
+      <nuxt-link class="text-decoration-none" to="/delete">delete one</nuxt-link>.
     </p>
   </div>
 </template>
@@ -46,25 +43,29 @@ const onChange = async (e: InputEvent) => {
   uploading.value = true
 
   const formData = new FormData()
-  formData.append('schematic', file)
+  formData.append('schematic', file!)
 
   try {
     const resp = await axios.post(
-      `${(await $fetch('/config.json')).api_url}/upload`,
+      `${(await $fetch<Config>('/config.json')).api_url}/upload`,
       formData,
       {
-        'Content-Type': 'multipart/form-data',
-        onUploadProgress: (event) => {
-          progress.value = Math.round((event.loaded * 100) / event.total)
+        headers: {
+          'Content-Type': 'multipart/form-data'
         },
+        onUploadProgress: (event) => {
+          if (event.total) {
+            progress.value = Math.round((event.loaded * 100) / event.total)
+          }
+        }
       }
     )
 
     emits('success', {
       download_key: resp.data.download_key,
-      delete_key: resp.data.delete_key,
+      delete_key: resp.data.delete_key
     })
-  } catch (err) {
+  } catch (err: any) {
     let status
     if (err.response) {
       status = err.response.status
