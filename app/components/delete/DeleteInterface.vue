@@ -32,7 +32,6 @@ const deleteSchematic = async () => {
     })
   } catch (err) {
     state.value = 'unknown'
-    // eslint-disable-next-line no-console
     console.error('Failed to delete schematic', err)
   }
 

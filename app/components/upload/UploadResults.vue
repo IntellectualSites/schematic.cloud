@@ -21,7 +21,7 @@
                 data-bs-dismiss="modal"
                 aria-label="Close"
                 @click="toggleDeleteModal"
-              ></button>
+              />
             </div>
             <div class="modal-body text-light">
               Are you sure you want to delete the schematic? If you do this,

@@ -27,8 +27,7 @@ onMounted(async () => {
     link.click()
     link.remove()
   } catch (err) {
-    // eslint-disable-next-line
-    console.error('Failed to download file. This should not happen.')
+    console.error('Failed to download file. This should not happen.', err)
   }
 })
 </script>

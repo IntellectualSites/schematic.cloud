@@ -2,17 +2,14 @@
   <Html>
     <Head>
       <Title>schematic.cloud - Upload and Store schematics</Title>
-      <Meta charset="UTF-8"></Meta>
-      <Meta
-        name="viewport"
-        content="width=device-width, initial-scale=1"
-      ></Meta>
+      <Meta charset="UTF-8"/>
+      <Meta name="viewport" content="width=device-width, initial-scale=1" />
       <Meta
         name="description"
         hid="description"
         content="Easily store your NBT Minecraft schematics in the cloud for later use"
-      ></Meta>
-      <Link rel="icon" type="image/x-icon" href="/favicon.ico"></Link>
+      />
+      <Link rel="icon" type="image/x-icon" href="/favicon.ico"/>
     </Head>
     <Body>
       <div class="container">
@@ -25,9 +22,9 @@
                     class="d-block my-0 mx-auto"
                     src="~/assets/img/logo.svg"
                     alt="schematic.cloud"
-                  />
+                  >
                 </nuxt-link>
-                <nuxt-page></nuxt-page>
+                <nuxt-page/>
               </div>
               <div class="card-footer">
                 <p class="m-0 text-center">

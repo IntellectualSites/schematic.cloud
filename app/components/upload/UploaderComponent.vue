@@ -13,7 +13,7 @@
         class="form-control form-control-file"
         type="file"
         @change="onChange"
-      />
+      >
     </div>
     <p class="links mt-4">
       Click here to
@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
 const emits = defineEmits(['success', 'failed'])
 
@@ -65,9 +65,9 @@ const onChange = async (e: InputEvent) => {
       download_key: resp.data.download_key,
       delete_key: resp.data.delete_key
     })
-  } catch (err: any) {
+  } catch (err) {
     let status
-    if (err.response) {
+    if (err instanceof AxiosError && err.response) {
       status = err.response.status
     }
 

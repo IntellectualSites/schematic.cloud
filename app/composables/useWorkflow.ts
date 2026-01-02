@@ -1,3 +1,6 @@
+import { AxiosError } from 'axios'
+
+// noinspection JSUnusedGlobalSymbols
 export const useWorkflow = () => {
   const loading = ref(true)
   const state = ref<'success' | 'gone' | 'not_found' | 'unknown' | 'unset'>(
@@ -16,9 +19,9 @@ export const useWorkflow = () => {
         method: 'HEAD',
       })
       state.value = 'success'
-    } catch (err: any) {
+    } catch (err) {
       let status
-      if (err.response) {
+      if (err instanceof AxiosError && err.response) {
         status = err.response.status
       }
 
