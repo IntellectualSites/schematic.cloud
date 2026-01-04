@@ -5,7 +5,7 @@
       class="form-control mt-2"
       type="text"
       :placeholder="placeholder"
-    />
+    >
     <button
       type="submit"
       class="btn btn-secondary d-block w-100 mt-2"

@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import LoadingSchematicData from '~/components/LoadingSchematicData'
-import IconScreen from '~/components/IconScreen'
+import LoadingSchematicData from '~/components/LoadingSchematicData.vue'
+import IconScreen from '~/components/IconScreen.vue'
 
 export default {
   name: 'SchematicWorkflow',

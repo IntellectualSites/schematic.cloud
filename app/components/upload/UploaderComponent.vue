@@ -13,7 +13,7 @@
         class="form-control form-control-file"
         type="file"
         @change="onChange"
-      />
+      >
     </div>
     <p class="links mt-4">
       Click here to
@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
 const emits = defineEmits(['success', 'failed'])
 
@@ -46,18 +46,22 @@ const onChange = async (e: InputEvent) => {
   uploading.value = true
 
   const formData = new FormData()
-  formData.append('schematic', file)
+  formData.append('schematic', file!)
 
   try {
     const resp = await axios.post(
-      `${(await $fetch('/config.json')).api_url}/upload`,
+      `${(await $fetch<Config>('/config.json')).api_url}/upload`,
       formData,
       {
-        'Content-Type': 'multipart/form-data',
-        onUploadProgress: (event) => {
-          progress.value = Math.round((event.loaded * 100) / event.total)
+        headers: {
+          'Content-Type': 'multipart/form-data',
         },
-      }
+        onUploadProgress: (event) => {
+          if (event.total) {
+            progress.value = Math.round((event.loaded * 100) / event.total)
+          }
+        },
+      },
     )
 
     emits('success', {
@@ -66,7 +70,7 @@ const onChange = async (e: InputEvent) => {
     })
   } catch (err) {
     let status
-    if (err.response) {
+    if (err instanceof AxiosError && err.response) {
       status = err.response.status
     }
 

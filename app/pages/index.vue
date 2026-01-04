@@ -1,5 +1,5 @@
 <template>
   <div class="card-body">
-    <UploadInterface></UploadInterface>
+    <UploadInterface />
   </div>
 </template>

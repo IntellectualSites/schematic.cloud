@@ -7,8 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import { useWorkflow } from '~/mixin/workflow'
-
 const { checkHeaders, deleteUrl, hasError, state, loading } = useWorkflow()
 
 const props = defineProps({
@@ -34,7 +32,6 @@ const deleteSchematic = async () => {
     })
   } catch (err) {
     state.value = 'unknown'
-    // eslint-disable-next-line no-console
     console.error('Failed to delete schematic', err)
   }
 

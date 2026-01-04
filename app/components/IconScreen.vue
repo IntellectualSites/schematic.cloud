@@ -5,7 +5,7 @@
       class="mt-3"
       style="width: 55px"
       alt="Icon indicating status"
-    />
+    >
     <b class="mt-2 d-block">{{ text }}</b>
   </div>
 </template>

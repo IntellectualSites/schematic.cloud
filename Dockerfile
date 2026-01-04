@@ -1,11 +1,12 @@
-FROM node:16.20.2 AS builder
+FROM node:24.12.0 AS builder
 
 # Set working directory
 WORKDIR /app
 
-# Install dependencies without lock file
-COPY package.json /app/package.json
-RUN yarn install --silent
+# Install dependencies
+COPY package.json yarn.lock .yarnrc.yml /app/
+RUN corepack enable
+RUN yarn
 
 # Get all remaining files
 COPY . /app

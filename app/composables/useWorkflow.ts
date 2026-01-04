@@ -1,7 +1,10 @@
-export function useWorkflow() {
+import { FetchError } from 'ofetch'
+
+// noinspection JSUnusedGlobalSymbols
+export const useWorkflow = () => {
   const loading = ref(true)
   const state = ref<'success' | 'gone' | 'not_found' | 'unknown' | 'unset'>(
-    'unset'
+    'unset',
   )
 
   const url = async (path: string, key: string) => {
@@ -16,10 +19,10 @@ export function useWorkflow() {
         method: 'HEAD',
       })
       state.value = 'success'
-    } catch (err: any) {
+    } catch (err) {
       let status
-      if (err.response) {
-        status = err.response.status
+      if (err instanceof FetchError && err.status) {
+        status = err.status
       }
 
       switch (status) {

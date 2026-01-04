@@ -1,7 +1,7 @@
 <template>
   <div class="input-group mb-3">
     <span class="input-group-text" style="width: 20%">{{ name }}</span>
-    <input type="text" class="form-control" :value="resolvedValue" disabled />
+    <input type="text" class="form-control" :value="resolvedValue" disabled >
     <button
       class="btn"
       :class="{
@@ -29,7 +29,7 @@ const props = defineProps({
     required: true,
   },
   value: {
-    type: [String, Promise],
+    type: Object as PropType<string | PromiseLike<string>>,
     required: true,
   },
 })
@@ -45,7 +45,6 @@ const onCopy = async () => {
     active.value = true
     setTimeout(() => (active.value = false), 3000)
   } catch (e) {
-    // eslint-disable-next-line no-console
     console.error(`Failed to copy value: ${resolvedValue.value}`, e)
   }
 }
