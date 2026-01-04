@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base", ":semanticCommitsDisabled"],
+  "extends": ["config:recommended", ":semanticCommitsDisabled"],
   "labels": ["dependencies"],
   "rebaseWhen": "conflicted",
   "automerge": true,
@@ -11,7 +11,7 @@
     },
     {
       "matchDatasources": ["npm"],
-      "stabilityDays": 3
+      "minimumReleaseAge": "3 days"
     }
   ],
   "schedule": ["on the first day of the month"]
