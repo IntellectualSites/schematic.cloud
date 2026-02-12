@@ -26,7 +26,7 @@
   "homepage": "https://github.com/IntellectualSites/schematic.cloud#readme",
   "dependencies": {
     "@nuxt/eslint": "1.13.0",
-    "axios": "1.13.4",
+    "axios": "1.13.5",
     "bootstrap": "5.3.8",
     "funnies": "2.1.0",
     "nuxt": "4.3.0",
