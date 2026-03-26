@@ -11243,11 +11243,11 @@ __metadata:
   linkType: hard
 
 "srvx@npm:^0.11.2":
-  version: 0.11.8
-  resolution: "srvx@npm:0.11.8"
+  version: 0.11.13
+  resolution: "srvx@npm:0.11.13"
   bin:
     srvx: bin/srvx.mjs
-  checksum: 10/ebd16aaca88f3841d8c50908dac8e71faf1cf9d36a5a984ee36e60428eca8c333ca86251d4975e4a9d13b93436d3a3ee5fe6192a2f8041e1f5013c9ae7e0af38
+  checksum: 10/b1f90ab758317d2a4f3bac78411505be2422f9f8e6fea70c26e1b349ba7c77c9ac85eb693429c33702a19dfaf8010e87681b83d5097092e9b45115b6635c7507
   languageName: node
   linkType: hard
 
